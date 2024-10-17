@@ -2,10 +2,10 @@ package com.palaceresorts.rule_utils_service.service;
 
 
 import com.palaceresorts.rule_utils_service.entity.Area;
-import com.palaceresorts.rule_utils_service.entity.Department;
 import com.palaceresorts.rule_utils_service.entity.Process;
 import com.palaceresorts.rule_utils_service.repository.AreaRepository;
 import com.palaceresorts.rule_utils_service.repository.ProcessRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AreaService {
 
-    @Autowired
-    private AreaRepository areaRepository;
-
-    @Autowired
-    private ProcessRepository processRepository;
+    private final AreaRepository areaRepository;
+    private final ProcessRepository processRepository;
 
     public Optional<Area> findByProcessIdAndStatusActive(String processId) {
         return areaRepository.findByProcessIdAndIsActiveTrue(processId);
