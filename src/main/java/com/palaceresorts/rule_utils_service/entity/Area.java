@@ -9,6 +9,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The {@code Area} class represents an entity in the Neo4j database.
+ * This class is mapped as a Node entity in the graph database, where each instance
+ * represents a Area, with attributes such as its process ID, name, initial and end
+ * dates, and whether it is active.
+ * @author [AQUILES YONATAN ARMENTA HERNANDEZ]
+ * @version 1.0
+ * @since 2024-10-04
+ * */
 @Node
 @Getter
 @Setter
@@ -47,6 +56,10 @@ public class Area {
      **/
     private String objective;
 
+    /**
+     * Relationship with Process entity.
+     */
     @Relationship(type = "has_process", direction = Relationship.Direction.OUTGOING)
+    @Builder.Default
     private Set<Process> processes = new HashSet<>();
 }

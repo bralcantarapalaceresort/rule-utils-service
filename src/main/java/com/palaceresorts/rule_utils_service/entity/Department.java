@@ -58,5 +58,6 @@ public class Department {
     private String objective;
 
     @Relationship(type = "has_area", direction = Relationship.Direction.OUTGOING)
+    @Builder.Default
     private Set<Area> areas = new HashSet<>();
 }

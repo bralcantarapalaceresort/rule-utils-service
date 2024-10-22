@@ -1,5 +1,6 @@
 
-FROM openjdk:17-jdk
+FROM openjdk:23-jdk
+
 
 ARG JAR_FILE=target/rule-utils-service-0.0.1-SNAPSHOT.jar
 WORKDIR /app

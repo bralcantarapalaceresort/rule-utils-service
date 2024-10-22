@@ -63,6 +63,7 @@ public class Company {
      private String vision;
 
     @Relationship(type = "has_department", direction = Relationship.Direction.OUTGOING)
+    @Builder.Default
     private Set<Department> departments = new HashSet<>();
 
 

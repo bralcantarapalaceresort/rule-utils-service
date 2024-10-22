@@ -6,6 +6,9 @@ import org.springframework.data.neo4j.core.schema.Id;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+/**
+ * Represents a request for a process, including its details and metadata.
+ */
 @Getter
 @Setter
 @Builder
