@@ -1,6 +1,7 @@
 package com.palaceresorts.rule_utils_service.repository;
 
 import com.palaceresorts.rule_utils_service.entity.Process;
+import com.palaceresorts.rule_utils_service.entity.SubProcess;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.stereotype.Repository;
@@ -27,4 +28,5 @@ public interface ProcessRepository extends Neo4jRepository<Process,String> {
 
     @Query("MATCH (p:Process) WHERE p.name = $name AND p.active = true RETURN p LIMIT 1")
     Optional<Process> findByName(String name);
+
 }
