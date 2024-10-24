@@ -5,6 +5,7 @@ import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -23,4 +24,13 @@ public interface SubProcessRepository extends Neo4jRepository<SubProcess,String>
      */
     @Query("MATCH (sp:SubProcess) WHERE sp.processId = $processId AND sp.active = true RETURN sp")
     Optional<SubProcess> findByProcessIdAndIsActiveTrue(String processId);
+
+    /**
+     * Finds all SubProcess entities by process name.
+     *
+     * @param name the name to search for
+     * @return a list of SubProcess entities with the given name
+     */
+    @Query("MATCH (p:Process {name: $name})-[:has_subProcess]->(subprocess) RETURN subprocess")
+    List<SubProcess> findSubProcessesByProcessName(String name);
 }

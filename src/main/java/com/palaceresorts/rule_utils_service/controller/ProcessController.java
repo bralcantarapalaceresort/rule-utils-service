@@ -2,9 +2,9 @@ package com.palaceresorts.rule_utils_service.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.palaceresorts.rule_utils_service.entity.Process;
+import com.palaceresorts.rule_utils_service.entity.SubProcess;
 import com.palaceresorts.rule_utils_service.model.ProcessRequest;
 import com.palaceresorts.rule_utils_service.service.ProcessService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/rule/utils/process")
 public class ProcessController {
+
     @Autowired
     private ProcessService processService;
 
@@ -125,4 +126,20 @@ public class ProcessController {
         Process process = processService.addSubProcessToProcess(processId,subProcessId);
         return new ResponseEntity<>(process, HttpStatus.OK);
     }
+
+    /**
+     * Retrieves all subprocesses for a process.
+     *
+     * @param name the name of the process to retrieve subprocesses for
+     * @return a ResponseEntity containing a list of subprocesses
+     */
+    @GetMapping("/{name}/subprocesses")
+    public ResponseEntity<List<SubProcess>> getSubProcessesByProcessName(@PathVariable String name) {
+        List<SubProcess> subProcesses = processService.findSubProcessesByProcessName(name);
+        if (subProcesses.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(subProcesses);
+    }
+
 }

@@ -151,4 +151,14 @@ public class ProcessService {
         return null;
     }
 
+    /**
+     * Retrieves all SubProcess entities for a given Process entity.
+     *
+     * @param processName the name of the Process entity
+     * @return a list of SubProcess entities for the given Process entity
+     */
+    public List<SubProcess> findSubProcessesByProcessName(String processName) {
+        return subProcessRepository.findSubProcessesByProcessName(processName);
+    }
+
 }
